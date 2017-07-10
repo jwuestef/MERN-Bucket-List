@@ -10,6 +10,11 @@ exports.signup = function(req, res, next) {
 	var email = req.body.email;
 	var password = req.body.password;
 
+	// Make sure both fields are filled in
+	if(!email || !password) {
+		return res.status(400).send({error: "You must provide both and email and password"});
+	};
+
 	// Goes through the database attempting to find one instance of a specific email address. 
 	// So it will look through all users and see if a user with the given email exists.
 	User.findOne({email: email.toLowerCase()}, function(err, foundExistingUser) {

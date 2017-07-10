@@ -2,6 +2,10 @@
 // First import mongoose.
 var mongoose = require("mongoose");
 
+// Import the encryption module
+var bcrypt = require("bcrypt-nodejs");
+
+
 
 
 // Create Schema variable. A Schema will tell mongoose about particular fields our models will have.
@@ -15,6 +19,31 @@ var userSchema = new Schema({
 		lowercase: true
 	},
 	password: String
+});
+
+
+// Before a user is saved, run a function
+userSchema.pre("save", function(next) {
+	var user = this;
+
+	// Call the generate-salt method out of the bcrypt module, and generate a salt... passed to function
+	bcrypt.genSalt(10, function(err, salt) {
+		if(err) {
+			return next(err);
+		};
+
+		// Using the "hash" method from the bcrypt module, has the password and salt together... pass to function
+		bcrypt.hash(user.password, salt, null, function(err, hash) {
+			if(err) {
+				return next(err);
+			};
+
+			// Set the password to this new hashed / encrypted password
+			user.password = hash;
+			next();
+		});
+	});
+
 });
 
 

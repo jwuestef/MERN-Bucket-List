@@ -1,14 +1,17 @@
+// Import authorization middleware
+var Auth = require("./controllers/auth");
+
+// Import the user model
+var User = require("./models/user");
+
+
+
+
+
 module.exports = function(app) {
 
 
-	app.get("/", function(req, res, next) {
-		res.send("Hello Homepage!");
-	});
-
-
-	app.get("/signup", function(req, res, next) {
-		res.send("Hey folks, thanks for signing up!");
-	});
+	app.post("/signup", Auth.signup);
 
 
 }

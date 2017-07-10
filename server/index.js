@@ -5,7 +5,7 @@
 var express = require("express");
 var http = require("http");
 var bodyParser = require("body-parser");
-
+var router = require("./router");
 
 
 
@@ -18,6 +18,10 @@ var app = express();
 // BodyParser is used for parsing incoming JSON requests. Remember that JSON comes in as one humongous string. 
 // BodyParser helps take it out of that stringified format and puts it into parsed code.
 app.use(bodyParser.json({type: '*/*'})); 
+
+// Calls the router.js file, passing the instance of express to it
+// This is where we handle all the routing
+router(app)
 
 // If there's an environment variable defined, use it. If not, use 3000.
 var port = process.env.port || 3000;

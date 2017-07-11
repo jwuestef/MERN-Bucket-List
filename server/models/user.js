@@ -22,6 +22,8 @@ var userSchema = new Schema({
 });
 
 
+
+
 // Before a user is saved, run a function
 userSchema.pre("save", function(next) {
 	var user = this;
@@ -45,6 +47,28 @@ userSchema.pre("save", function(next) {
 	});
 
 });
+
+
+
+
+// Whenever we create a User object, it will have access to functions that we have on the methods property.
+userSchema.methods.comparePassword = function(candidatePassword, callback) {
+
+	// This.password is our salted and hashed password of user in DB
+	bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+		// If there was some error, unable to compare for some reason
+		if(err) {
+			return callback(err);
+		};
+
+		// Otherwise, call the provided callback function with the result
+		// Null-error, and isMatch either true/false
+		callback(null, isMatch);
+	});
+
+};
+
+
 
 
 // The model will actually create new users and load the Schema into Mongoose. 

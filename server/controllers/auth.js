@@ -2,6 +2,22 @@
 // Import the user model
 var User = require("../models/user");
 
+// Import JWT module and the secret
+var jwt = require("jwt-simple");
+var config = require("../config");
+
+
+
+
+function createUserToken(user) {
+	// Get the current time
+	var timestamp = new Date().getTime();
+	// Using JSON Web Token package, we encode the user's id and the issued-at timestamp, encoded/mixed with the secret.
+	return jwt.encode({sub: user.id, iat: timestamp}, config.secret);
+};
+
+
+
 
 exports.signup = function(req, res, next) {
 
@@ -38,8 +54,8 @@ exports.signup = function(req, res, next) {
 			if(err) {
 				return next(err);
 			};
-			// Respond to request indicating the user was created
-			res.json({success: true});
+			// User successfully created - return a valid JWT created with our function above
+			res.json({token: createUserToken(newUser)});
 		});
 
 	});

@@ -7,7 +7,7 @@ var http = require("http");
 var bodyParser = require("body-parser");
 var router = require("./router");
 var mongoose = require("mongoose");
-
+var cors = require("cors");
 
 
 
@@ -49,6 +49,9 @@ mongoose.connect("mongodb://localhost:bucket/bucket");
 
 // MIDDLEWARE
 // ==================================================
+
+// Cors is a middleware on the Express side. This is going to allow users to make requests from other ports and domains.
+app.use(cors());
 
 // BodyParser is used for parsing incoming JSON requests. Remember that JSON comes in as one humongous string. 
 // BodyParser helps take it out of that stringified format and puts it into parsed code.

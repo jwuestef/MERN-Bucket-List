@@ -9,14 +9,14 @@ class NavBarHeader extends Component {
 
 	renderLinks() {
 		if(this.props.authenticated) {
-			return <NavItem href="#">Sign Out</NavItem>
+			return <NavItem href="/signout">Sign Out</NavItem>
 		} else {
 			return [
-				<NavItem key={1} href="/signin">Sign In</NavItem>
+				<NavItem key={1} href="/signin">Sign In</NavItem>,
 				<NavItem key={2} href="/signup">Sign Up</NavItem>
 			];
-		}
-	}
+		};
+	};
 
 
 	render() {
@@ -24,7 +24,7 @@ class NavBarHeader extends Component {
 			<Navbar>
 				<Navbar.Header>
 					<Navbar.Brand>
-						<a href="#">Bucket List</a>
+						<a href="/">Bucket List</a>
 					</Navbar.Brand>
 				</Navbar.Header>
 				<Nav>
@@ -42,17 +42,19 @@ class NavBarHeader extends Component {
 	};
 
 
-
-	// This function is what turns this component into a smart component(container). 
-	// Remember that the state is passed in to this function, and the it will tell whether or not the user is authenticated
-	function mapStateToProps(state) {
-		return {
-			authenticated: state.auth.authenticated
-		}
-	}
+};
 
 
-}
+
+
+// This function is what turns this component into a smart component(container). 
+// Remember that the state is passed in to this function, and the it will tell whether or not the user is authenticated
+function mapStateToProps(state) {
+	return {
+		authenticated: state.auth.authenticated
+	};
+};
+
 
 
 

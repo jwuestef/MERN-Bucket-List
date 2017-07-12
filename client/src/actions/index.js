@@ -57,6 +57,17 @@ export function authError(error) {
 
 
 
+// Purpose of type is to catch unauth_user case
+// Flips auth flag to false & there won't be any links associated with them
+// Other thing to do is get rid of token
+export function signoutUser() {
+	localStorage.removeItem("token");
+	return {type: UNAUTH_USER};
+};
+
+
+
+
 // We are creating a constant, like we did in our Redux Fundamentals called CREATE_POSTS.
 
 // We use a constant Root_URL to call out to a test api. 

@@ -35,3 +35,19 @@ exports.addBucketList = function(req, res, next) {
 
 
 };
+
+
+
+
+exports.fetchBucketLists = function(req, res, next) {
+	var specificUser = req.user._id;
+	BucketList.find({specificUser: specificUser})
+		.then(
+			function fetchSuccess(data) {
+				res.json(data);
+			},
+			function fetchError(err) {
+				res.send(500, err.message);
+			}
+		);
+};

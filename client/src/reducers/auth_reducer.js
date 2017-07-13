@@ -1,7 +1,7 @@
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR } from '../actions/types';
 
 
-export default function(state = {}, action) {
+export default function(state = {}, error: '', action) {
 
 	switch(action.type) {
 		case AUTH_USER:

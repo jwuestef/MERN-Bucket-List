@@ -68,6 +68,23 @@ export function signoutUser() {
 
 
 
+export function signupUser({email, password}) {
+	return function(??????????) {
+		// Submit email/password to the server
+		axios.post(`${ROOT_URL}/signup`, {email, password})
+			.then(response => {
+				dispatch({type: AUTH_USER});
+				// Update the token
+				localStorage.setItem("token", response.data.token);
+				browserHistory.push('/newitem');
+			})
+			.catch(response => dispatch(authError(response.data.error)));
+	};
+};
+
+
+
+
 // We are creating a constant, like we did in our Redux Fundamentals called CREATE_POSTS.
 
 // We use a constant Root_URL to call out to a test api. 

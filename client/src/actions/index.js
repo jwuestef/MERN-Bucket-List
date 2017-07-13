@@ -1,7 +1,7 @@
 // Axios is a promise based library that allows us to make AJAX requests
 import axios from 'axios';
 import { browserHistory } from 'react-router';
-import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, CREATE_POSTS, FETCH_POSTS, FETCH_POST, DELETE_POST } from './types';
+import { AUTH_USER, UNAUTH_USER, AUTH_ERROR, CREATE_POSTS, FETCH_POSTS, FETCH_POST, DELETE_POST, UPDATE_POST } from './types';
 import authReducer from '../reducers/auth_reducer';
 
 
@@ -56,7 +56,7 @@ export function fetchPost(id) {
 					type:FETCH_POST,
 					payload: response
 				});
-				browserHistory.push("/items");
+				// browserHistory.push("/items");
 			});
 	};
 };
@@ -70,6 +70,22 @@ export function deletePost(id) {
 			.then( (response) => {
 				dispatch({
 					type:DELETE_POST,
+					payload: response
+				});
+				browserHistory.push("/items");
+			});
+	};
+};
+
+
+
+
+export function updatePost(props, id) {
+	return function(dispatch) {
+		axios.put(`${ROOT_URL}/items/${id}`, {props}, config)
+			.then( (response) => {
+				dispatch({
+					type:UPDATE_POST,
 					payload: response
 				});
 				browserHistory.push("/items");

@@ -51,3 +51,35 @@ exports.fetchBucketLists = function(req, res, next) {
 			}
 		);
 };
+
+
+
+
+exports.fetchBucketList = function(req, res) {
+	var specificBucketList = req.params.id;
+	BucketList.findOne({_id: specificBucketList})
+		.then(
+			function fetchSuccess(data) {
+				res.json(data);
+			},
+			function fetchError(err) {
+				res.send(500, err.message);
+			}
+		);
+};
+
+
+
+
+exports.deleteBucketList = function(req, res) {
+	var specificBucketList = req.params.id;
+	BucketList.remove({_id: specificBucketList})
+		.then(
+			function deleteSuccess(data) {
+				res.json(data);
+			},
+			function deleteError(err) {
+				res.send(500, err.message);
+			}
+		);
+};

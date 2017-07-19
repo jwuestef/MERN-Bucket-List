@@ -100,4 +100,4 @@ export default reduxForm({
 	form: 'signup',
 	fields: ['email', 'password', 'passwordConfirm'],
 	validate: validate
-}, mapStateToProps)(Signup);
+}, mapStateToProps, actions)(Signup);

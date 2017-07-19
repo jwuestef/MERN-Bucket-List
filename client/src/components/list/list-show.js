@@ -42,13 +42,16 @@ class ListShow extends Component {
 				<h6>Topic: {post.topic}</h6>
 				<div id="space"></div>
 				<p>{post.content}</p>
-				<Link to="/items" className="btn btn-primary">Back to Post List</Link>
-				<Link to={`/updateitem/${this.props.params.id}`} className="btn btn-info">Update List</Link>
 
+				<br />
+				<Link to={`/updateitem/${this.props.params.id}`} className="btn btn-info">Update List</Link>
+				<br />
 				<button className="btn btn-danger" 
 					onClick={this.onDeleteClick.bind(this)}>
 					Delete Post
 				</button>
+				<br />
+				<Link to="/items" className="btn btn-primary">Back to Post List</Link>
 			</div>
 		);
 	};

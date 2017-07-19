@@ -22,7 +22,7 @@ class Video extends Component {
 			videos: [],
 			selectedVideo: null
 		};
-		this.videoSearch("bucketlist");
+		this.videoSearch("kittens");
 	};
 
 

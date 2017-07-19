@@ -29,13 +29,6 @@ class NavBarHeader extends Component {
 				</Navbar.Header>
 				<Nav>
 					{this.renderLinks()}
-					<NavDropdown key={3} title="Cool Stuff" id="basic-nav-dropdown">
-						<MenuItem key={3.1}>Action</MenuItem>
-						<MenuItem key={3.2}>Another action</MenuItem>
-						<MenuItem key={3.3}>Something else here</MenuItem>
-						<MenuItem divider />
-						<MenuItem key={3.3}>Separated link</MenuItem>
-					</NavDropdown>
 				</Nav>
 			</Navbar>
 		);

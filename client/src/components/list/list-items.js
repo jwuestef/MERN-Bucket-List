@@ -29,7 +29,7 @@ class ListItems extends Component {
 			return (
 				<li className="list-group-item" key={post._id}>
 					<Link to={"items/" + post._id}>
-						<span className="pull-xs-left">{post.topic}</span>
+						<span className="pull-xs-left">{post.topic}</span>&nbsp;-&nbsp;
 						<span className="pull-xs-right"><strong>{post.title}</strong></span>
 					</Link>
 				</li>
@@ -50,7 +50,7 @@ class ListItems extends Component {
 							<h3 className="text-xs-left">Lists</h3>
 						</div>
 						<div className="col-sm-6 text-xs-right">
-							<Link to="/newitem" className="btn btn-primary">
+							<Link to="/newitem" id="addAListItemButton" className="btn btn-primary">
 								Add a List Item
 							</Link>
 						</div>

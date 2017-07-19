@@ -6,7 +6,7 @@ class SearchBar extends Component {
 
 	constructor(props) {
 		super(props);
-		this.state = {term: 'bucket list'};
+		this.state = {term: 'kittens'};
 	};
 
 

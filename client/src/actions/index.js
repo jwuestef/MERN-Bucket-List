@@ -17,6 +17,7 @@ var config = {
 
 
 export function createPost(props) {
+	config.headers.authorization = localStorage.getItem("token");
 	return function(dispatch) {
 		axios.post(`${ROOT_URL}/newitem`, {props}, config)
 			.then(request => {
